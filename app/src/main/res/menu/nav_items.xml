@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="@string/nav_home" />
+    <item
+        android:id="@+id/nav_list"
+        android:icon="@drawable/baseline_list_black_24dp"
+        android:title="@string/nav_list" />
+    <item
+        android:id="@+id/nav_add"
+        android:icon="@drawable/baseline_add_black_24dp"
+        android:title="@string/nav_add" />
+    <item
+        android:id="@+id/nav_notif"
+        android:icon="@drawable/baseline_notification_important_black_24dp"
+        android:title="@string/nav_notify" />
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/baseline_settings_black_24dp"
+        android:title="@string/nav_setting" />
+</menu>

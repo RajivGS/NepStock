@@ -1,85 +1,181 @@
 package com.example.nepalstock;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.SearchView;
 
-import org.w3c.dom.Text;
+import com.example.HomeFragment;
+import com.example.NotificationFragment;
+import com.example.PlusFragment;
+import com.example.SettingFragment;
+import com.example.ViewFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listView;
-    String mTitle[] = {"Swabhimaan Laghubitta Bittiya Sanstha Limited","Upper Tamakoshi Hydropower Ltd","Womi Microfinance Bittiya Sanstha Ltd.","Butwal Power Company Limited"};
+    private BottomNavigationView mMainNav;
+    private FrameLayout mMainFrame;
+    private HomeFragment homeFragment;
+    private NotificationFragment notificationFragment;
+    private ViewFragment viewFragment;
+    private PlusFragment plusFragment;
+    private SettingFragment settingFragment;
 
-    int[] image ={R.drawable.bpcl,R.drawable.sbsl,R.drawable.uthl,R.drawable.wmbsl};
+    private RecyclerView mRecyclerView;
+    private List<Object> viewItems = new ArrayList<>();
 
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private static final String TAG = "MainActivity";
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MyAdapter adapter = new MyAdapter(this,mTitle,image);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        displayListView();
+        addItemsFromJSON();
+        navBarFunction();
+
+    }
+
+    private void displayListView() {
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        mRecyclerView.setHasFixedSize(false);
+
+        layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mAdapter = new RecyclerAdapter(this, viewItems);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void addItemsFromJSON() {
+        try {
+
+            String jsonDataString = readJSONDataFromFile();
+            JSONArray jsonArray = new JSONArray(jsonDataString);
+
+            for (int i = 0; i < jsonArray.length(); ++i) {
+
+                JSONObject itemObj = jsonArray.getJSONObject(i);
+
+                String name = itemObj.getString("companyName");
+                String date = itemObj.getString("symbol");
+
+                CompanyDetailList holidays = new CompanyDetailList(name, date);
+                viewItems.add(holidays);
+            }
+
+        } catch (IOException | JSONException e) {
+            Log.d(TAG, "addItemsFromJSON: ", e);
+        }
+    }
+
+    private String readJSONDataFromFile() throws IOException {
+
+        InputStream inputStream = null;
+        StringBuilder builder = new StringBuilder();
+
+        try {
+            String jsonString = null;
+            inputStream = getResources().openRawResource(R.raw.companies);
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(inputStream, "UTF-8"));
+
+            while ((jsonString = bufferedReader.readLine()) != null) {
+                builder.append(jsonString);
+            }
+
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+        return new String(builder);
+    }
+
+    public void navBarFunction() {
+        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
+        mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
+
+        homeFragment = new HomeFragment();
+        notificationFragment = new NotificationFragment();
+        viewFragment = new ViewFragment();
+        plusFragment = new PlusFragment();
+        settingFragment = new SettingFragment();
+
+
+
+        mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) {
-                    Toast.makeText(MainActivity.this, "",Toast.LENGTH_SHORT).show();
-                }
-                if(position == 1) {
-                    Toast.makeText(MainActivity.this, "",Toast.LENGTH_SHORT).show();
-                }
-                if(position == 2) {
-                    Toast.makeText(MainActivity.this, "",Toast.LENGTH_SHORT).show();
-                }
-                if(position == 3) {
-                    Toast.makeText(MainActivity.this, "",Toast.LENGTH_SHORT).show();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.nav_home:     // This should open up the home fragment and color
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
+                        setFragment(homeFragment);
+                        return true;
+
+                    case R.id.nav_list:
+                        mMainNav.setItemBackgroundResource(R.color.colorAccent);
+                        setFragment(viewFragment);
+                        return true;
+
+                    case R.id.nav_add:
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimaryDark);
+                        setFragment(plusFragment);
+                        return true;
+
+                    case R.id.nav_notif:
+                        mMainNav.setItemBackgroundResource(R.color.colorAccent);
+                        setFragment(notificationFragment);
+                        return true;
+
+                    case R.id.nav_setting:
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
+                        setFragment(settingFragment);
+                        return true;
+                    default:
+                        return false;
                 }
             }
+
+            protected void setFragment(Fragment fragment) {
+
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.commit();
+
+            }
+
         });
 
-    }
 
-    class MyAdapter extends ArrayAdapter<String> {
-
-        Context context;
-        String rTitle[];
-        int rImgs[];
-
-        public MyAdapter(Context c,String title[], int imgs[]) {
-            super(c,R.layout.row,title);
-            this.context = c;
-            this.rTitle = title;
-            this.rImgs = imgs;
-
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-            LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row,parent,false);
-            ImageView images = row.findViewById(R.id.image);
-            //TextView myTitle = row.findViewById(R.id.textView);
-
-           images.setImageResource(rImgs[position]);
-
-
-            return row;
-        }
     }
 
 
-}
+    }

@@ -1,218 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".MainActivity">
-    <SearchView
-        android:layout_width="wrap_content"
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="60dp"
+        android:paddingBottom="75dp"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/list_item" />
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        tools:ignore="MissingConstraints">
+    </FrameLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:queryHint="Search Company"
-        android:iconifiedByDefault="false"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
-    </SearchView>
+        android:layout_marginTop="100dp"
+        tools:ignore="MissingConstraints">
 
-    <LinearLayout
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:background = "@drawable/bg_item"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="12dp">
-
-        <ImageView
-            android:src="@drawable/sbsl"
-            android:layout_width="34.5dp"
-            android:layout_height="35dp"/>
-        <LinearLayout
-            android:layout_marginTop="8dp"
+        <SearchView
             android:orientation="vertical"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/searchview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:iconifiedByDefault="true"
+            android:queryHint="Search Company"
+        />
 
-        <TextView
-            android:layout_width="159.59dp"
-            android:layout_height="32dp"
-            android:lineHeight="15sp"
-            android:padding="1dp"
-            android:text="Swabhimaan Laghubitta Bittiya Sanstha Limited"
-            android:textColor="#4a4a4a"
-            android:textSize="13sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="44.31dp"
-            android:layout_height="12dp"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
-            android:text="Amount"
-            android:textColor="#000"
-            android:textSize="7dp"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_marginLeft="15sp"
-            android:layout_width="42.78dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center"
-            android:text="Profit/Loss"
-            android:textSize="7dp"
-            android:textColor="#f04"
-            android:gravity="center"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:background = "@drawable/bg_item"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="12dp">
-
-        <ImageView
-            android:src="@drawable/uthl"
-            android:layout_width="34.5dp"
-            android:layout_height="35dp"/>
-        <LinearLayout
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="159.59dp"
-            android:layout_height="32dp"
-            android:lineHeight="15sp"
-            android:padding="1dp"
-            android:text="Upper Tamakoshi Hydropower Ltd	"
-            android:textColor="#4a4a4a"
-            android:textSize="13sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="44.31dp"
-            android:layout_height="12dp"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
-            android:text="Amount"
-            android:textColor="#000"
-            android:textSize="7dp"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_marginLeft="15sp"
-            android:layout_width="42.78dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center"
-            android:text="Profit/Loss"
-            android:textSize="7dp"
-            android:textColor="#f04"
-            android:gravity="center"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:background = "@drawable/bg_item"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="12dp">
-
-        <ImageView
-            android:src="@drawable/wmbsl"
-            android:layout_width="34.5dp"
-            android:layout_height="35dp"/>
-        <LinearLayout
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="159.59dp"
-            android:layout_height="32dp"
-            android:lineHeight="15sp"
-            android:padding="1dp"
-            android:text="Womi Microfinance Bittiya Sanstha Ltd."
-            android:textColor="#4a4a4a"
-            android:textSize="13sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="44.31dp"
-            android:layout_height="12dp"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
-            android:text="Amount"
-            android:textColor="#000"
-            android:textSize="7dp"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_marginLeft="15sp"
-            android:layout_width="42.78dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center"
-            android:text="Profit/Loss"
-            android:textSize="7dp"
-            android:textColor="#f04"
-            android:gravity="center"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:background = "@drawable/bg_item"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="12dp">
-
-        <ImageView
-            android:src="@drawable/bpcl"
-            android:layout_width="34.5dp"
-            android:layout_height="35dp"/>
-        <LinearLayout
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="159.59dp"
-            android:layout_height="32dp"
-            android:lineHeight="15sp"
-            android:padding="1dp"
-            android:text="Butwal Power Company Limited"
-            android:textColor="#4a4a4a"
-            android:textSize="13sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="44.31dp"
-            android:layout_height="12dp"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
-            android:text="Amount"
-            android:textColor="#000"
-            android:textSize="7dp"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_marginLeft="15sp"
-            android:layout_width="42.78dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center"
-            android:text="Profit/Loss"
-            android:textSize="7dp"
-            android:textColor="#f04"
-            android:gravity="center"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_nav"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="-1dp"
+            app:itemBackground="@color/colorPrimary"
+            app:itemIconTint="@color/nav_item_colors"
+            app:itemTextColor="@color/nav_item_colors"
+            app:menu="@menu/nav_items" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">NepalStock</string>
+    <string name="date">Date</string>
+    <string name="clock">Clock</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_list">List</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_notify">Notification</string>
+    <string name="nav_setting">Setting</string>
+    <string name="swabhimaan_laghubitta_bittiya_sanstha_limited">Swabhimaan Laghubitta Bittiya Sanstha Limited</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="womi_microfinance_bittiya_sanstha_ltd">Womi Microfinance Bittiya Sanstha Ltd.</string>
 </resources>
