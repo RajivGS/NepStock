@@ -1,60 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/showListButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="60dp"
-        android:paddingBottom="75dp"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/list_item" />
+        android:gravity="center"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginBottom="15dp"
+        android:text="+"
+        android:textSize="30sp"
+        />
     <FrameLayout
+
         android:id="@+id/main_frame"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
     </FrameLayout>
-
-    <RelativeLayout
+   <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
         tools:ignore="MissingConstraints">
 
-        <SearchView
-            android:orientation="vertical"
-            android:id="@+id/searchview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:iconifiedByDefault="true"
-            android:queryHint="Search Company"
-        />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/main_nav"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="2dp"
-            android:layout_marginBottom="-1dp"
-            app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@color/nav_item_colors"
-            app:itemTextColor="@color/nav_item_colors"
-            app:menu="@menu/nav_items" />
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+       <com.google.android.material.bottomnavigation.BottomNavigationView
+           android:id="@+id/main_nav"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentBottom="true"
+           android:layout_marginStart="1dp"
+           android:layout_marginBottom="3dp"
+           app:itemBackground="@color/colorPrimary"
+           app:itemIconTint="@color/nav_item_colors"
+           app:itemTextColor="@color/nav_item_colors"
+           app:menu="@menu/nav_items" />
+   </RelativeLayout>
+</LinearLayout>

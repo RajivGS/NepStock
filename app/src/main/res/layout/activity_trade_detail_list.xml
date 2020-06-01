@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Trade_detail_list"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/companynameText"
+                android:text="Company Name"
+                android:textSize="24sp"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:padding="10dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/symbolText"
+                android:text="Symbol"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/securityNameText"
+                android:text="securityName"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/statusText"
+                android:text="Status"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/companyEmailText"
+                android:text="companyEmail"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/websiteText"
+                android:text="Website"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sectorNameText"
+                android:text="SectorName"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/regularoryBodyText"
+                android:text="RegulartoryBody"
+                android:textSize="20sp"
+                android:gravity="start"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-light"
+                android:layout_below="@id/sectorNameText"
+                android:padding="8dp"
+                />
+            <TextView
+                android:id="@+id/instrumenttypeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="start"
+                android:text="InstrumentType"
+                android:textSize="20sp"
+                android:padding="8dp"
+                android:textStyle="italic" />
+
+</LinearLayout>

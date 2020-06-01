@@ -7,12 +7,24 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 
+import com.example.CompanyDetailList;
 import com.example.HomeFragment;
 import com.example.NotificationFragment;
 import com.example.PlusFragment;
@@ -33,6 +45,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button button;
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
     private HomeFragment homeFragment;
@@ -41,82 +54,27 @@ public class MainActivity extends AppCompatActivity {
     private PlusFragment plusFragment;
     private SettingFragment settingFragment;
 
-    private RecyclerView mRecyclerView;
-    private List<Object> viewItems = new ArrayList<>();
-
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-    private static final String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        displayListView();
-        addItemsFromJSON();
         navBarFunction();
-
+        displayListFiles();
     }
-
-    private void displayListView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-        mRecyclerView.setHasFixedSize(false);
-
-        layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
-
-        mAdapter = new RecyclerAdapter(this, viewItems);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void addItemsFromJSON() {
-        try {
-
-            String jsonDataString = readJSONDataFromFile();
-            JSONArray jsonArray = new JSONArray(jsonDataString);
-
-            for (int i = 0; i < jsonArray.length(); ++i) {
-
-                JSONObject itemObj = jsonArray.getJSONObject(i);
-
-                String name = itemObj.getString("companyName");
-                String date = itemObj.getString("symbol");
-
-                CompanyDetailList holidays = new CompanyDetailList(name, date);
-                viewItems.add(holidays);
+    private void displayListFiles() {
+        button = (Button) findViewById(R.id.showListButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Display_list_activity();
             }
-
-        } catch (IOException | JSONException e) {
-            Log.d(TAG, "addItemsFromJSON: ", e);
+        });
+    }
+    public void Display_list_activity() {
+        Intent intent = new Intent(this,Display_list_activity.class);
+        startActivity(intent);
         }
-    }
-
-    private String readJSONDataFromFile() throws IOException {
-
-        InputStream inputStream = null;
-        StringBuilder builder = new StringBuilder();
-
-        try {
-            String jsonString = null;
-            inputStream = getResources().openRawResource(R.raw.companies);
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(inputStream, "UTF-8"));
-
-            while ((jsonString = bufferedReader.readLine()) != null) {
-                builder.append(jsonString);
-            }
-
-        } finally {
-            if (inputStream != null) {
-                inputStream.close();
-            }
-        }
-        return new String(builder);
-    }
 
     public void navBarFunction() {
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
@@ -127,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
         viewFragment = new ViewFragment();
         plusFragment = new PlusFragment();
         settingFragment = new SettingFragment();
-
-
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -177,5 +133,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    }
+}
